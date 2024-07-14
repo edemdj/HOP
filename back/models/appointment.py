@@ -1,5 +1,6 @@
 from datetime import datetime
-from app import db
+from config.database import db
+
 
 class Patient(db.Model):
     id = db.Column(db.Integer, primary_key=True)

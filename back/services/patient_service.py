@@ -1,4 +1,4 @@
-from models import Patient
+from models.patient import Patient
 from app import db
 
 def create_patient(data):

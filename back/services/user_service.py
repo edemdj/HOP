@@ -1,5 +1,6 @@
 from models import User
 from app import db
+from models import User
 
 def create_user(data):
     new_user = User(username=data['username'], email=data['email'], password=data['password'])
