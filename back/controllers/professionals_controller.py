@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from services.professionnel_service import create_professionnel, get_professionnel_by_id, update_professionnel, delete_professionnel, get_all_professionnels
+from back.services.professionnel_service import create_professionnel, get_professionnel_by_id, update_professionnel, delete_professionnel, get_all_professionnels
 
 professionnels_bp = Blueprint('professionnels_bp', __name__)
 
