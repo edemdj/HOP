@@ -1,17 +1,15 @@
+from config.database import db
 from sqlalchemy import Column, Integer, String, Date
-from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import validates
 
-Base = declarative_base()
-
-class Patient(Base):
+class Patient(db.Model):
     __tablename__ = 'patients'
 
-    id = Column(Integer, primary_key=True, index=True)
-    first_name = Column(String(50), nullable=False)
-    last_name = Column(String(50), nullable=False)
-    email = Column(String(100), unique=True, nullable=False)
-    date_of_birth = Column(Date, nullable=False)
+    id = db.Column(db.Integer, primary_key=True, index=True)
+    first_name = db.Column(db.String(50), nullable=False)
+    last_name = db.Column(db.String(50), nullable=False)
+    email = db.Column(db.String(100), unique=True, nullable=False)
+    date_of_birth = db.Column(db.Date, nullable=False)
 
     def __init__(self, first_name, last_name, email, date_of_birth):
         self.first_name = first_name

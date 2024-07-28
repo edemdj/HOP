@@ -1,10 +1,8 @@
 from sqlalchemy import Column, Integer, String, Date
-from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import validates
+from config.database import db
 
-Base = declarative_base()
-
-class Professional(Base):
+class Professional(db.Model):
     __tablename__ = 'professionals'
 
     id = Column(Integer, primary_key=True, index=True)
@@ -27,7 +25,8 @@ class Professional(Base):
 
     @validates('email')
     def validate_email(self, key, address):
-        assert '@' in address, "Invalid email address"
+        if '@' not in address:
+            raise ValueError("Invalid email address")
         return address
 
     # Getters and setters
@@ -57,7 +56,7 @@ class Professional(Base):
 
     @email.setter
     def email(self, value):
-        if not '@' in value:
+        if '@' not in value:
             raise ValueError("Invalid email address")
         self._email = value
 
