@@ -1,21 +1,13 @@
-from flask import Flask
-from config.database import db, init_app
-from models.professional import Professional
-from models.patient import Patient
-from models.appointment import Appointment
-from models.user import User
+from flask import Flask, jsonify, request
+from database import db
 
 app = Flask(__name__)
 
-init_app(app)
-
-
-with app.app_context():
-    db.create_all()
-
-@app.route('/')
-def hello():
-    return "Hello, World!"
+# Route pour les patients
+@app.route('/patients', methods=['GET'])
+def get_patients():
+    patients = db.session.query(patients).all()  # Exemple d'utilisation de SQLAlchemy
+    return jsonify([patient.to_dict() for patient in patients])
 
 if __name__ == '__main__':
     app.run(debug=True)
